@@ -1,10 +1,12 @@
 const express = require('express');
+// bodyParser gives us req.body, it would be undefined without
 const bodyParser = require('body-parser')
 const app = express();
 const PORT = 5000;
 
 app.use(bodyParser.urlencoded({extended:true}));
 
+// localhost:5000 looks for files in server/public
 app.use(express.static('server/public'));
 
 // Initialize array
@@ -25,7 +27,7 @@ app.post('/calc', (req, res) => {
   res.sendStatus(201);
 });
 
-// PORT
+// PORT 
 app.listen(PORT, () => {
     console.log ('Server is running on port', PORT)
 });

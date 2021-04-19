@@ -30,6 +30,7 @@ function handleReady() {
         console.log('clicked clear');
         clearInput();
     });
+    getCalc();
 }
 
 function postCalc() {

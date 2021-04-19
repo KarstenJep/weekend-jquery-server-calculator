@@ -34,17 +34,21 @@ app.listen(PORT, () => {
 function calculate() {
     let calc = calculations[calculations.length - 1];
     console.log('in calculate', calc);
-    if (calc.operator === 'add') {
-        console.log('in add calculator', calc.value1, calc.value2);
-        calc.answer = (calc.value1 + calc.value2);
-    } else if (calc.operator === 'minus') {
-        console.log('in minus calculator', calc.value1, calc.value2);
-        calc.answer = calc.value1 - calc.value2;
-    } else if (calc.operator === 'multiply') {
-        console.log('in multiply calculator', calc.value1, calc.value2);
-        calc.answer = calc.value1 * calc.value2;
-    } else (calc.operator === 'divide') ;{
-        console.log('in divide calculator', calc.value1, calc.value2);
-        calc.answer = calc.value1 / calc.value2;
+    if (calc.operator === '+') { 
+        console.log('in add calculator', calc.value1, calc.operator, calc.value2);
+        calc.answer = Number(calc.value1) + Number(calc.value2);
+
+    } else if (calc.operator === '-') {
+        console.log('in minus calculator', calc.value1, calc.operator, calc.value2);
+        calc.answer = Number(calc.value1) - Number(calc.value2);
+
+    } else if (calc.operator === '*') {
+        console.log('in multiply calculator', calc.value1, calc.operator, calc.value2);
+        calc.answer = Number(calc.value1) * Number(calc.value2);
+
+    } else if(calc.operator === '/') {
+        console.log('in divide calculator', calc.value1, calc.operator, calc.value2);
+        calc.answer = Number(calc.value1) / Number(calc.value2);
     }
 };
+

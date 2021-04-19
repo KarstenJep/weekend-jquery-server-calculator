@@ -5,21 +5,22 @@ let newCalc = {
     operator: '',
     value2: 0,
     answer: 0,
+    history: '',
 }
 
 function handleReady() {
     console.log('jQ is loaded yo');
     $('#add').on('click', function (event) {
-        newCalc.operator = 'add';
+        newCalc.operator = '+';
     });
     $('#minus').on('click', function (event) {
-       newCalc.operator = 'minus';
+       newCalc.operator = '-';
     });
     $('#multiply').on('click', function (event) {
-        newCalc.operator = 'multiply';
+        newCalc.operator = '*';
     });
     $('#divide').on('click', function (event) {
-        newCalc.operator = 'divide';
+        newCalc.operator = '/';
     });
     $('#submit').on('click', function (event) {
         console.log('clicked submit');
@@ -49,9 +50,10 @@ function postCalc() {
         })
         .catch( function (error) {
           console.log('error from server', error);
-          alert('sorry, could not get guesses. Try again later.');
+          alert('sorry, could not get calc. Try again later.');
         })  
 }
+ 
 
 function getCalc() {
     $.ajax({
@@ -71,11 +73,19 @@ function getCalc() {
   
 function render(calc) {
     console.log('in render', calc);
-    $('#answer').empty().append(`${calc.answer}`);
+    $('#history').empty();
+    for (let item of calc) {
+        $('#answer').empty();
+        $('#answer').append(`${item.answer}`);
+        $('#history').append(`<p>${item.value1} ${item.operator} ${item.value2} = ${item.answer}</p>`)   
+    }
 }
+
 
 function clearInput() {
     $('#value1').val('');
     $('#value2').val('');
+    $('#answer').empty();
+    $('#answer').append(0);
 }
 
